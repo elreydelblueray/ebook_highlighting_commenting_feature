@@ -31,7 +31,7 @@ function getUserId () {
     var completeCookie = document.cookie;
 
 
-    if ()
+    //if ()
 
 
     var cookiesAsArray = completeCookie.split("%40uzh");
