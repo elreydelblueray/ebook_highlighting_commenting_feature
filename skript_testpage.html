@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Sandbox Christian</title>
+    <script src="cookie_handler.js"></script>
 </head>
 <body>
+
+
+
 
 
     <iframe src="https://eskript.ethz.ch/testuzh/chapter/sandbox-christian/" style="width: 100%; min-height: 600px">
@@ -12,6 +16,10 @@
     </iframe>
 
     <script>
+
+        setCookie("username", "christian.schneider2@uzh.ch", 14);
+        setCookie("pwd", "xyz", 14);
+
         console.log("start read out script");
         var url = window.location.search.substring(1); //get rid of "?" in querystring
         var qArray = url.split('&'); //get key-value pairs
@@ -23,6 +31,9 @@
             //    return pArr[1]; //return value
         }
         console.log("end read out script");
+
+        console.log(getCookie("username"));
+
     </script>
 
 
