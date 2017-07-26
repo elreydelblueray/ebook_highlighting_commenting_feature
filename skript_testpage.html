@@ -9,17 +9,17 @@
 
     <iframe src="https://eskript.ethz.ch/testuzh/chapter/sandbox-christian/" style="width: 100%; min-height: 600px">
         <script>
-
-                var url = window.location.search.substring(1); //get rid of "?" in querystring
-                var qArray = url.split('&'); //get key-value pairs
-                for (var i = 0; i < qArray.length; i++)
-                {
-                    var pArr = qArray[i].split('='); //split key and value
-                    console.log(pArr[0] + " -- " + pArr[1]);
-                    //if (pArr[0] == paramName)
-                    //    return pArr[1]; //return value
-                }
-
+            console.log("start read out script");
+            var url = window.location.search.substring(1); //get rid of "?" in querystring
+            var qArray = url.split('&'); //get key-value pairs
+            for (var i = 0; i < qArray.length; i++)
+            {
+                var pArr = qArray[i].split('='); //split key and value
+                console.log(pArr[0] + " -- " + pArr[1]);
+                //if (pArr[0] == paramName)
+                //    return pArr[1]; //return value
+            }
+            console.log("end read out script");
         </script>
     </iframe>
 
