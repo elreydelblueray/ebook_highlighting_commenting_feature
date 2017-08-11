@@ -19,3 +19,22 @@ function setCookie(cname, cvalue, exdays) {
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+
+
+
+function setCookieKeyValuePair(myKey, myVal) {
+    var entry = myKey + "=" + myVal;
+    document.cookie = entry;
+}
+
+function getCookiesAsArray() {
+    var cookiesAsString = document.cookie;
+    var elements = cookiesAsString.split('; ');
+    var keyValuePairs = {};
+    for (var i = 0; i < elements.length; i++) {
+        var currentElement = elements[i];
+        var currentKeyValuePair = currentElement.split('=');
+        keyValuePairs[currentKeyValuePair[0]] = currentKeyValuePair[1];
+    }
+    return keyValuePairs;
+}

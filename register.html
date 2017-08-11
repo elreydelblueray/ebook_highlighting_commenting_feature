@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eSkript features sandbox</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <script src="https://unpkg.com/jquery@2.2.4"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+
+    <script src="cookie_handler.js"></script>
+
+    <script src="user_controller.js"></script>
+
+    <script src="md5_handler.js"></script>
+
+</head>
+<body>
+
+
+
+
+
+
+<div class="login_container">
+    <div class="login_block" align="center">
+        <h2>
+            eSkript Reading – Registrieren
+        </h2>    </div>
+    <div class="login_block" align="center" id="inputs">
+        <div style="width: 100%">
+            <table>
+                <tr>
+                    <td>
+                        Email Adresse
+                    </td>
+                    <td>
+                        <input type="text" id="email">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Kennwort
+                    </td>
+                    <td>
+                        <input type="password" id="pwd">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+
+                    </td>
+
+                </tr>
+            </table>
+            <div align="center">
+
+            </div>
+        </div>
+    </div>
+    <div class="login_block" align="center">
+        <button type="button" id="lgnbtn">Registrieren</button>
+    </div>
+    <div class="login_block" align="center" id="notification" style="display: none">
+        Sie wurden registriert. Bitte
+        <a href="index.html" style="color:blue; text-decoration: underline">
+            loggen Sie sich mit Ihren Zugangsdaten ein
+        </a>
+        .
+    </div>
+</div>
+
+
+<script>
+    $(window).on('load', function(){
+        $('div.login_container').masonry({
+            //columnWidth: 100,
+            //columnHeight: 300,
+            itemSelector: 'div.login_block',
+        });
+        document.getElementById("email").value = "";
+    });
+    var loginbtn = document.getElementById('lgnbtn');
+    loginbtn.onclick = function () {
+        login ();
+    }
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+            login ();
+        }
+    });
+    function login () {
+        var email_address = document.getElementById("email").value;
+        var password_hash = MD5(document.getElementById("pwd").value);
+        addUser(email_address,password_hash);
+        document.getElementById("notification").style.display = 'inline';
+        document.getElementById("inputs").style.display = 'none';
+        document.getElementById("lgnbtn").style.display = 'none';
+        userCredentialsAreValid(email_address, password_hash, function (response) {
+            if (response == 1) {
+                setCookieKeyValuePair("username", email.value);
+                window.location.href = "index.html";
+            }
+            else {
+                document.getElementById("notification").style.display = 'inline';
+            }
+        });
+    }
+</script>
+
+
+
+</body>
+</html>

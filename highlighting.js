@@ -1,10 +1,3 @@
-/**
- * Created by christianschneider on 27.06.17.
- */
-
-
-
-
 
 $(function() {
 
@@ -23,30 +16,19 @@ $(function() {
 
 
 
-    var sandbox = document.getElementById('sandbox');
+    var content = document.getElementById('content');
 
 
-    var hltr = new TextHighlighter(sandbox),
+
+    var hltr = new TextHighlighter(content),
         serialized;
     hltr.removeHighlights();
 
 
-    //var stringedSerialized = "[[\"<span class=\\\"highlighted\\\" data-timestamp=\\\"1498570403422\\\" style=\\\"background-color: rgb(255, 255, 123);\\\" data-highlighted=\\\"true\\\"></span>\",\"r sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et acc\",\"1:3:45:1\",300,186]]";
-    //console.log(stringedSerialized);
-    //var unstringedSerialized = JSON.parse(stringedSerialized);
-    //console.log(unstringedSerialized);
-
     loadJSON(function(response) {
-        // Parse JSON string into object
-
-
-
         console.log("actual");
         console.log(response);
         hltr.deserializeHighlights(response);
-
-
-
     });
 
 

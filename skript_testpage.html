@@ -4,21 +4,42 @@
     <meta charset="UTF-8">
     <title>Sandbox Christian</title>
     <script src="cookie_handler.js"></script>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="TextHighlighter.min.js"></script>
+    <script src="json_handler.js"></script>
+    <!--<script src="highlighting.js"></script>-->
+    <script src="cookie_handler.js"></script>
+
+
+
 </head>
 <body>
 
 
+    <script>
+        var documentUrl = "https://eskript.ethz.ch/testuzh/chapter/sandbox-christian/";
+        var username = "christian.schneider2@uzh.ch";
+        var password = "xyz";
+
+        document.write('<iframe id="sandbox" src="'+ documentUrl + '"  style="width: 100%; min-height: 600px"></iframe>');
+
+
+    </script>
 
 
 
-    <iframe src="https://eskript.ethz.ch/testuzh/chapter/sandbox-christian/" style="width: 100%; min-height: 600px">
 
-    </iframe>
+
+
+
 
     <script>
 
-        setCookie("username", "christian.schneider2@uzh.ch", 14);
-        setCookie("pwd", "xyz", 14);
+        //setCookie("username", "christian.schneider2@uzh.ch", 14);
+        //setCookie("pwd", "xyz", 14);
 
         console.log("start read out script");
         var url = window.location.search.substring(1); //get rid of "?" in querystring
@@ -33,6 +54,57 @@
         console.log("end read out script");
 
         console.log(getCookie("username"));
+
+
+
+
+
+        var iframe = document.querySelector('iframe');
+
+        iframe.onload = function() {
+
+            var $context = $(".context");
+            var $log = $(".log");
+
+            var $highlightedElements = [];
+
+
+            console.log("test");
+            //console.log(getCookie("serialized"));
+            console.log(getCookie(1));
+
+            var sandbox = document.getElementById('sandbox');
+
+            var hltr = new TextHighlighter(sandbox),
+                serialized;
+            hltr.removeHighlights();
+
+            loadJSON(function(response) {
+
+                console.log("actual");
+                console.log(response);
+                hltr.deserializeHighlights(response);
+
+            });
+
+            $context.textHighlighter({
+                "onAfterHighlight": function(arr, element) {
+                    $highlightedElements.push(element);
+                    //console.log($highlightedElements);
+
+                    serialized = hltr.serializeHighlights();
+                    document.cookie = "serialized=" + JSON.stringify(serialized);
+
+                }
+            });
+        });
+
+
+
+
+
+
+
 
     </script>
 
