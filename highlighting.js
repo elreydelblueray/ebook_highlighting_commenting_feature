@@ -35,15 +35,23 @@ $(function() {
 
     $context.textHighlighter({
         "onAfterHighlight": function(arr, element) {
+
             $highlightedElements.push(element);
             //console.log($highlightedElements);
 
-
+            console.log("no highlighted");
 
             serialized = hltr.serializeHighlights();
 
 
             document.cookie = "serialized=" + JSON.stringify(serialized);
+
+
+
+
+                element.onclick = function () {
+                    console.log("click on highlight.");
+                }
 
 
 
